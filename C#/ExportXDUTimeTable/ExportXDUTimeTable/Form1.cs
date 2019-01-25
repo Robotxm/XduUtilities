@@ -42,7 +42,7 @@ namespace ExportXDUTimeTable
         {
             if (!hc.DefaultRequestHeaders.Contains("Referer"))
                 hc.DefaultRequestHeaders.Add("Referer", "http://ids.xidian.edu.cn/authserver/login?service=https%3A%2F%2Fxidian.cpdaily.com%2Fcomapp-timetable%2Fsys%2FschoolTimetable%2Fv2%2Fapi%2FweekTimetable");
-            List<KeyValuePair<String, String>> paramList = new List<KeyValuePair<String, String>>
+            List<KeyValuePair<string, string>> paramList = new List<KeyValuePair<string, string>>
             {
                 new KeyValuePair<string, string>("username", txtStuID.Text),
                 new KeyValuePair<string, string>("password", txtPwd.Text),
@@ -61,16 +61,16 @@ namespace ExportXDUTimeTable
                 allTeachWeeks = int.Parse(jCourse["allTeachWeeks"].ToString());
 
                 // Start conversion
-                // Traverse all weeks in term
+                // All weeks in term
                 for (int curWeek = 0; curWeek < allTeachWeeks; curWeek++)
                 {
-                    // Traverse all days in a week
+                    // All days in a week
                     for (int curDay = 0; curDay < 7; curDay++)
                     {
                         // Check if there's any course in the day
                         if (jCourse["termWeeksCourse"][curWeek]["courses"][curDay]["sectionCourses"].Count() != 0)
                         {
-                            // Traverse all courses in the day
+                            // All courses in the day
                             for (int curCourse = 0; curCourse < jCourse["termWeeksCourse"][curWeek]["courses"][curDay]["sectionCourses"].Count(); curCourse++)
                             {
                                 string courseDay = jCourse["termWeeksCourse"][curWeek]["courses"][curDay]["date"].ToString();
@@ -82,18 +82,12 @@ namespace ExportXDUTimeTable
                                 if (chkChangeTime.Checked)
                                 {
                                     if (DateTime.Compare(DateTime.Parse(courseDay), dtpTimeB.Value) > 0 && DateTime.Compare(DateTime.Parse(courseDay), dtpTimeA.Value) < 0) // Time B
-                                    {
                                         AddToCalendar(courseDay, courseName, courseClassroom, courseStart, courseEnd, true);
-                                    }
                                     else
-                                    {
                                         AddToCalendar(courseDay, courseName, courseClassroom, courseStart, courseEnd, false);
-                                    }
                                 }
                                 else
-                                {
                                     AddToCalendar(courseDay, courseName, courseClassroom, courseStart, courseEnd, false);
-                                }
                             }
                         }
                     }
@@ -107,9 +101,7 @@ namespace ExportXDUTimeTable
                 MessageBox.Show(this, "课表保存到: " + desktopPath + "xdu_timetable_" + txtStuID.Text + "_" + DateTime.Now.ToString("yyyyMMddHHmmss"), "完成", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
-            {
                 MessageBox.Show(this, "获取课表失败！\n请检查学号或密码是否正确。\n如果确认无误，可能是服务器升级了或爆炸了，请与作者联系。\n另外，假期时间无法获取课表。", "失败", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
         }
 
         public Form1()
@@ -125,8 +117,7 @@ namespace ExportXDUTimeTable
             strLt = Regex.Match(strHtml, @"<input type=""hidden"" name=""lt"" value=""(.*?)""/>").Groups[1].Value;
             strExecution = Regex.Match(strHtml, @"<input type=""hidden"" name=""execution"" value=""(.*?)""/>").Groups[1].Value;
             strEventId = Regex.Match(strHtml, @"<input type=""hidden"" name=""_eventId"" value=""(.*?)""/>").Groups[1].Value;
-            strRmShown = Regex.Match(strHtml, @"<input type=""hidden"" name=""rmShown"" value=""(.*?)""/>").Groups[1].Value;
-            
+            strRmShown = Regex.Match(strHtml, @"<input type=""hidden"" name=""rmShown"" value=""(.*?)"">").Groups[1].Value;
         }
 
         public void AddToCalendar(string date, string courseName, string classroom, int sectionStart, int sectionEnd, bool isTimeB)
