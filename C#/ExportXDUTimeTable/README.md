@@ -10,4 +10,4 @@ Export your timetable as iCalendar (.ics) format then you can import it to your 
 
 **Be sure that you enter correct ID and password. Invalid ID-password pattern will cause verification required. Up to now, I have not finish verification part (a lazy programmer). Besides, use your ID (11-digit number) instead of alias to avoid some unexpected error.**
 
-**Install iCal.NET in NuGet before compiling.**
+**Install iCal.NET and Newtonsoft.Json in NuGet before compiling.**
