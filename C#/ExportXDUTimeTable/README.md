@@ -1,11 +1,13 @@
 # ExportXDUTimeTable
-将学校课程表导出为 iCalendar 格式以便导入到日历中。
+Export your timetable as iCalendar (.ics) format then you can import it to your prefered calendar app.
 
-## 使用方法
-1、编译；
+## Usage
+1. Compile
 
-2、输入学号密码，设置好作息交换日期，点击“获取”。
+2. Enter your student ID and password and set up correct time when we change timetable, click "Fetch" (a.k.a “获取”) button
 
-**请确保学号和密码正确，时间关系虽然预留了输入验证码的地方但没写代码。尽量使用学号而不是设置的别名登录。**
+3. Find your iCalendar (.ics) file on your **PC'S DESKTOP, NOT REAL :)**
 
-**需要在 NuGet 中安装 iCal.NET**
+**Be sure that you enter correct ID and password. Invalid ID-password pattern will cause verification required. Up to now, I have not finish verification part (a lazy programmer). Besides, use your ID (11-digit number) instead of alias to avoid some unexpected error.**
+
+**Install iCal.NET in NuGet before compiling.**
