@@ -4,7 +4,7 @@ Export your timetable as iCalendar (.ics) format then you can import it to your 
 ## Usage
 1. Compile
 
-2. Enter your student ID and password and set up correct time when we change timetable, click "Fetch" (a.k.a “获取”) button
+2. Enter your student ID and password and set up correct time when we change timetable, click "Fetch" (a.k.a. “获取”) button
 
 3. Find your iCalendar (.ics) file on your **PC'S DESKTOP, NOT REAL :)**
 
