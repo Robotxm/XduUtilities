@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XduUIA", "XduUIA\XduUIA.csproj", "{77B24400-D12F-41C8-A07E-BC318D1784ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XduUIADemo", "XduUIADemo\XduUIADemo.csproj", "{C9743D01-81B4-496E-BEAF-C7765CED06FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{77B24400-D12F-41C8-A07E-BC318D1784ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77B24400-D12F-41C8-A07E-BC318D1784ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77B24400-D12F-41C8-A07E-BC318D1784ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9743D01-81B4-496E-BEAF-C7765CED06FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9743D01-81B4-496E-BEAF-C7765CED06FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9743D01-81B4-496E-BEAF-C7765CED06FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9743D01-81B4-496E-BEAF-C7765CED06FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

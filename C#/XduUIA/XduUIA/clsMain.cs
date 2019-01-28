@@ -28,6 +28,28 @@ namespace XduUIA
         private readonly Uri _baseUri = new Uri("http://ids.xidian.edu.cn/authserver/login");
 
         /// <summary>
+        /// 使用指定的登录信息初始化 <see cref="Ids"/> 类。
+        /// </summary>
+        /// <param name="id">用于登录的学号。</param>
+        /// <param name="password">用于登录的密码。</param>
+        /// <param name="redirectUri">回调地址。接受原始 URI 或编码后的 URI。</param>
+        public Ids(string id, string password, string redirectUri)
+        {
+            Id = id;
+            Password = password;
+            RedirectUri = redirectUri;
+        }
+
+        /// <summary>
+        /// 初始化新的空 <see cref="Ids"/> 类。
+        /// </summary>
+        public Ids()
+        {
+            Id = "";
+            Password = "";
+            RedirectUri = "";
+        }
+        /// <summary>
         /// <para>使用设置的学号和密码进行统一身份认证系统登录。如果提供验证码，则一并使用。</para>
         /// <para>返回包含 Cookies 等信息的 HttpClient 类。</para>
         /// </summary>
@@ -41,19 +63,21 @@ namespace XduUIA
         public HttpClient Login(out Image verificationImage, HttpClient client = null, string verificationCode = "")
         {
             // Check format of id, password and redirect uri
-            if (long.TryParse(Id, out _) || Id.Length != 11)
+            if (!long.TryParse(Id, out _) || Id.Length != 11)
                 throw new FormatException("学号格式不正确。");
             if (Password == "")
                 throw new ArgumentException("密码不能为空。");
             if (!CheckUri(HttpUtility.UrlDecode(RedirectUri)))
                 throw new FormatException("回调地址格式不正确。");
             HttpClient hc = new HttpClient();
-            // Add User-Agent
+            // Set HttpClient up
             hc.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.92 Safari/537.36");
+            hc.DefaultRequestHeaders.ExpectContinue = false;
+            hc.DefaultRequestHeaders.Connection.Add("keep-alive");
             // Build get params
             UriBuilder builder = new UriBuilder(_baseUri);
             var query = HttpUtility.ParseQueryString(builder.Query);
-            query["service"] = RedirectUri;
+            query["service"] = HttpUtility.UrlDecode(RedirectUri);
             builder.Query = query.ToString();
             string strLoginUri = builder.ToString();
             // Load login page
@@ -77,20 +101,28 @@ namespace XduUIA
                 new KeyValuePair<string, string>("rmShown", strRmShown)
             };
             string strReturn = hc.PostAsync(strLoginUri, new FormUrlEncodedContent(paramList)).Result.Content.ReadAsStringAsync().Result;
-            // Login successfully
-            if (!ContainsChinese(strReturn.Replace("西安电子科技大学", "")))
+            try
             {
+                // Login successfully
                 verificationImage = null;
+                // Verification required
+                if (hc.GetStringAsync("http://ids.xidian.edu.cn/authserver/needCaptcha.html?username=" + Id + @"&_=" + GetTimestamp()).Result == "true" || strReturn.Contains("请输入验证码"))
+                {
+                    verificationImage =
+                        Image.FromStream(hc.GetStreamAsync("http://ids.xidian.edu.cn/authserver/captcha.html").Result);
+                    return hc;
+                }
+                // Id or password is invalid
+                if (strReturn.Contains("有误"))
+                    throw new Exception("学号或密码不正确。");
+
                 return hc;
             }
-            // Verification required
-            if (hc.GetStringAsync("http://ids.xidian.edu.cn/authserver/needCaptcha.html?username=" + Id + @"&_=" + GetTimestamp()).Result == "true" || strReturn.Contains("请输入验证码"))
+            catch (Exception e)
             {
-                verificationImage = Image.FromStream(hc.GetStreamAsync("http://ids.xidian.edu.cn/authserver/captcha.html").Result);
-                return hc;
+                // Other exception
+                throw new Exception($"登录失败。\n{e.Message}");
             }
-            // Other exception
-            throw new Exception("登录失败。");
         }
 
         /// <summary>
@@ -117,7 +149,7 @@ namespace XduUIA
         /// 获取表示当前时间的 Unix 时间戳。
         /// </summary>
         /// <returns>返回 <see langword="long"/> 表示 Unix 时间戳。</returns>
-        private long GetTimestamp()
+        public long GetTimestamp()
         {
             return DateTimeOffset.Now.ToUnixTimeMilliseconds();
         }
