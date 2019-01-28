@@ -13,6 +13,12 @@ For details (dependences, environmet, etc.), please refer to README in each proj
 
 A tool that exports your timetable as iCalendar (.ics) format then you can import it to your prefered calendar app.
 
+**2. XduUIA**
+
+A class library that allows you to login IDS.
+
+&emsp;
+
 *For details about tool which deals with Eight-One Project (a.k.a. “八个一工程”), please contact me. Because it cannot be published in public for some reasons.*
 
 ## Note
