@@ -7,6 +7,9 @@ using System.Web;
 
 namespace XduUIA
 {
+    /// <summary>
+    /// 提供登录统一身份认证系统通用方法的类。
+    /// </summary>
     public class Ids
     {
         /// <summary>
