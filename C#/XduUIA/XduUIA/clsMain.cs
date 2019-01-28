@@ -41,15 +41,6 @@ namespace XduUIA
         }
 
         /// <summary>
-        /// 初始化新的空 <see cref="Ids"/> 类。
-        /// </summary>
-        public Ids()
-        {
-            Id = "";
-            Password = "";
-            RedirectUri = "";
-        }
-        /// <summary>
         /// <para>使用设置的学号和密码进行统一身份认证系统登录。如果提供验证码，则一并使用。</para>
         /// <para>返回包含 Cookies 等信息的 HttpClient 类。</para>
         /// </summary>
