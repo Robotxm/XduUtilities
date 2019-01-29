@@ -281,8 +281,8 @@ namespace XduUIA
 
         /// <summary>
         /// 生成在 i 西电所有请求所需的签名。
-        /// <paramref name="param"/>
         /// </summary>
+        /// <param name="param">要签名的 param 对象。</param>
         /// <returns>表示签名的字符串。</returns>
         public string GetSign(JObject param)
         {
