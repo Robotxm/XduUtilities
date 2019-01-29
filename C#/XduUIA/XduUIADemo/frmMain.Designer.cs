@@ -36,6 +36,7 @@
             this.txtPwd = new System.Windows.Forms.TextBox();
             this.pbVerify = new System.Windows.Forms.PictureBox();
             this.btnLoginIds = new System.Windows.Forms.Button();
+            this.btnLoginApp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbVerify)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,11 +114,22 @@
             this.btnLoginIds.UseVisualStyleBackColor = true;
             this.btnLoginIds.Click += new System.EventHandler(this.btnLoginIds_Click);
             // 
+            // btnLoginApp
+            // 
+            this.btnLoginApp.Location = new System.Drawing.Point(235, 171);
+            this.btnLoginApp.Name = "btnLoginApp";
+            this.btnLoginApp.Size = new System.Drawing.Size(205, 66);
+            this.btnLoginApp.TabIndex = 16;
+            this.btnLoginApp.Text = "登录 i 西电";
+            this.btnLoginApp.UseVisualStyleBackColor = true;
+            this.btnLoginApp.Click += new System.EventHandler(this.btnLoginApp_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 255);
+            this.Controls.Add(this.btnLoginApp);
             this.Controls.Add(this.lblStuID);
             this.Controls.Add(this.lblVerify);
             this.Controls.Add(this.lblPass);
@@ -144,6 +156,7 @@
         private System.Windows.Forms.TextBox txtPwd;
         private System.Windows.Forms.PictureBox pbVerify;
         private System.Windows.Forms.Button btnLoginIds;
+        private System.Windows.Forms.Button btnLoginApp;
     }
 }
 
