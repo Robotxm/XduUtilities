@@ -162,7 +162,7 @@ namespace XduUIA
         /// </summary>
         public string Password { get; set; }
         /// <summary>
-        /// 获取 i 西电所有请求所需的令牌。
+        /// 获取 i 西电所有请求所需的 Uuid。
         /// </summary>
         public string Uuid { get; }
         /// <summary>
@@ -267,7 +267,7 @@ namespace XduUIA
         }
 
         /// <summary>
-        /// 生成用于登录的随机 Uuid。
+        /// 生成用于 i 西电的随机 Uuid。
         /// </summary>
         /// <returns>表示 Uuid 的字符串。</returns>
         private string GetUuid()
@@ -280,9 +280,10 @@ namespace XduUIA
         }
 
         /// <summary>
-        /// 生成在 i 西电所有请求所需的令牌。
+        /// 生成在 i 西电所有请求所需的签名。
+        /// <paramref name="param"/>
         /// </summary>
-        /// <returns></returns>
+        /// <returns>表示签名的字符串。</returns>
         public string GetSign(JObject param)
         {
             return Md5Encrypt32(JsonToQuery(new JObject(param.Properties().OrderBy(p => p.Name))));
@@ -292,7 +293,7 @@ namespace XduUIA
         /// 生成 32 位大写 MD5。
         /// </summary>
         /// <param name="input">要加密的内容。</param>
-        /// <returns></returns>
+        /// <returns>MD5 字符串。</returns>
         private static string Md5Encrypt32(string input)
         {
             MD5 md5Hash = MD5.Create();
