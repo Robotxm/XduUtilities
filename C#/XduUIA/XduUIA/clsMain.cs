@@ -232,7 +232,6 @@ namespace XduUIA
                 {"schoolId", SchoolId}
             };
             string loginParams = BuildQuery(param);
-            //@"{""appKey"":""" + AppKey + @""",""param"":""{\""userName\"":\""" + Id + @"\"",\""password\"":\""" + Password + @"\"",\""uuId\"":\""" + Uuid + @"\"",\""schoolId\"":190}"",""time"":" + GetTimestamp() + @",""secure"":0,""sign"":""" + GetSign() + @"""}";
             string strReturn = hc.PostAsync("http://202.117.121.7:8080/baseCampus/login/login.do", new StringContent(loginParams, Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result;
             try
             {
