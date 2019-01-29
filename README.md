@@ -15,7 +15,7 @@ A tool that exports your timetable as iCalendar (.ics) format then you can impor
 
 **2. XduUIA**
 
-A class library that allows you to login IDS.
+A class library that allows you to login IDS and XduApp (a.k.a iXidian or “i 西电”).
 
 &emsp;
 
