@@ -31,6 +31,10 @@ namespace XduUIA
         /// 获取或设置回调地址。接受原始 URI 或编码后的 URI。
         /// </summary>
         public string RedirectUri { get; set; }
+        /// <summary>
+        /// 获取或设置登录使用的 <see cref="HttpClient"/> 类的 Referer 标头。
+        /// </summary>
+        public string Referrer { get; set; }
 
         /// <summary>
         /// 统一身份认证系统基础 URI。
@@ -43,11 +47,16 @@ namespace XduUIA
         /// <param name="id">用于登录的学号。</param>
         /// <param name="password">用于登录的密码。</param>
         /// <param name="redirectUri">回调地址。接受原始 URI 或编码后的 URI。</param>
-        public Ids(string id, string password, string redirectUri)
+        /// <param name="referrer">
+        /// <para>登录使用的 <see cref="HttpClient"/> 类的 Referer 标头。</para>
+        /// <para>如果不指定，则为统一身份认证系统默认标头。</para>
+        /// </param>
+        public Ids(string id, string password, string redirectUri, string referrer = "http://ids.xidian.edu.cn")
         {
             Id = id;
             Password = password;
             RedirectUri = redirectUri;
+            Referrer = referrer;
         }
 
         /// <summary>
@@ -72,6 +81,8 @@ namespace XduUIA
                 throw new ArgumentException("密码不能为空。");
             if (!CheckUri(HttpUtility.UrlDecode(RedirectUri)))
                 throw new FormatException("回调地址格式不正确。");
+            if (!CheckUri(Referrer))
+                throw new FormatException("Referer 标头格式不正确。");
             HttpClient hc = new HttpClient();
             // Add HttpClient headers
             hc.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.92 Safari/537.36");
@@ -91,7 +102,7 @@ namespace XduUIA
             string strEventId = Regex.Match(strHtmlContent, @"<input type=""hidden"" name=""_eventId"" value=""(.*?)""/>").Groups[1].Value;
             string strRmShown = Regex.Match(strHtmlContent, @"<input type=""hidden"" name=""rmShown"" value=""(.*?)"">").Groups[1].Value;
             // Set referer header
-            hc.DefaultRequestHeaders.Referrer = new Uri("http://ids.xidian.edu.cn");
+            hc.DefaultRequestHeaders.Referrer = new Uri(Referrer);
             // Build login params
             List<KeyValuePair<string, string>> paramList = new List<KeyValuePair<string, string>>
             {
