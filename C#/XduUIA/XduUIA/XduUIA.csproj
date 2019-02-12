@@ -68,4 +68,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Vsxmd.1.4.1\build\Vsxmd.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Vsxmd.1.4.1\build\Vsxmd.targets'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)Tools\IncBuildNo.exe "$(PROJECTDIR)\Properties\AssemblyInfo.cs" "\[assembly: AssemblyVersion\(\"\d+\.\d+\.\d+\.(\d+)" 1 Debug $(ConfigurationName)
+$(SolutionDir)Tools\IncBuildNo.exe "$(PROJECTDIR)\Properties\AssemblyInfo.cs" "\[assembly: AssemblyFileVersion\(\"\d+\.\d+\.\d+\.(\d+)" 1 Debug $(ConfigurationName)</PostBuildEvent>
+  </PropertyGroup>
 </Project>
