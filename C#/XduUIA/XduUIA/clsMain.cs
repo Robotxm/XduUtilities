@@ -28,13 +28,18 @@ namespace XduUIA
         /// </summary>
         public string Password { get; set; }
         /// <summary>
-        /// 获取或设置回调地址。接受原始 URI 或编码后的 URI。
+        /// <para>获取或设置回调地址。接受原始 URI 或编码后的 URI。</para>
+        /// <para>如果提供编码后的 URI，请设置 <see cref="UrlEncoded"/> 为 <see langword="true"/>。</para>
         /// </summary>
         public string RedirectUri { get; set; }
         /// <summary>
-        /// 获取或设置登录使用的 <see cref="HttpClient"/> 类的 Referer 标头。
+        /// 获取或设置登录使用的 <see cref="T:System.Net.Http.HttpClient"/> 类的 Referer 标头。
         /// </summary>
         public string Referrer { get; set; }
+        /// <summary>
+        /// 指定设置的 RedirectUri 是否已经经过编码。
+        /// </summary>
+        public bool UrlEncoded { get; set; }
 
         /// <summary>
         /// 统一身份认证系统基础 URI。
@@ -48,7 +53,7 @@ namespace XduUIA
         /// <param name="password">用于登录的密码。</param>
         /// <param name="redirectUri">回调地址。接受原始 URI 或编码后的 URI。</param>
         /// <param name="referrer">
-        /// <para>登录使用的 <see cref="HttpClient"/> 类的 Referer 标头。</para>
+        /// <para>登录使用的 <see cref="T:System.Net.Http.HttpClient"/> 类的 Referer 标头。</para>
         /// <para>如果不指定，则为统一身份认证系统默认标头。</para>
         /// </param>
         public Ids(string id, string password, string redirectUri, string referrer = "http://ids.xidian.edu.cn")
@@ -61,7 +66,7 @@ namespace XduUIA
 
         /// <summary>
         /// <para>使用设置的学号和密码进行统一身份认证系统登录。如果提供验证码，则一并使用。</para>
-        /// <para>返回包含 Cookies 等信息的 <see cref="HttpClient"/> 类。</para>
+        /// <para>返回包含 Cookies 等信息的 <see cref="T:System.Net.Http.HttpClient"/> 类。</para>
         /// </summary>
         /// <param name="verificationImage">
         /// 当此方法返回时，如果登录成功，则为 <see langword="null" />；
@@ -71,7 +76,7 @@ namespace XduUIA
         /// <exception cref="FormatException">登录信息格式不正确。</exception>
         /// <exception cref="ArgumentException">密码不能为空。</exception>
         /// <exception cref="Exception">登录失败。</exception>
-        /// <returns>包含 Cookies 等信息的 <see cref="HttpClient"/> 类。</returns>
+        /// <returns>包含 Cookies 等信息的 <see cref="T:System.Net.Http.HttpClient"/> 类。</returns>
         public HttpClient Login(out Image verificationImage, string verificationCode = "")
         {
             // Check format of id, password and redirect uri
@@ -91,7 +96,7 @@ namespace XduUIA
             // Build get params
             UriBuilder builder = new UriBuilder(_baseUri);
             var query = HttpUtility.ParseQueryString(builder.Query);
-            query["service"] = HttpUtility.UrlDecode(RedirectUri);
+            query["service"] = UrlEncoded ? RedirectUri : HttpUtility.UrlDecode(RedirectUri);
             builder.Query = query.ToString();
             string strLoginUri = builder.ToString();
             // Load login page
@@ -207,12 +212,12 @@ namespace XduUIA
 
         /// <summary>
         /// <para>使用设置的学号和密码进行 i 西电系统登录。如果提供验证码，则一并使用。</para>
-        /// <para>返回包含 Cookies 等信息的 <see cref="HttpClient"/> 类。</para>
+        /// <para>返回包含 Cookies 等信息的 <see cref="T:System.Net.Http.HttpClient"/> 类。</para>
         /// </summary>
         /// <exception cref="FormatException">登录信息格式不正确。</exception>
         /// <exception cref="ArgumentException">密码不能为空。</exception>
         /// <exception cref="Exception">登录失败。</exception>
-        /// <returns>包含 Cookies 等信息的 <see cref="HttpClient"/> 类。</returns>
+        /// <returns>包含 Cookies 等信息的 <see cref="T:System.Net.Http.HttpClient"/> 类。</returns>
         public HttpClient Login()
         {
             // Check format of id, password and redirect uri
