@@ -29,17 +29,13 @@ namespace XduUIA
         public string Password { get; set; }
         /// <summary>
         /// <para>获取或设置回调地址。接受原始 URI 或编码后的 URI。</para>
-        /// <para>如果提供编码后的 URI，请设置 <see cref="UrlEncoded"/> 为 <see langword="true"/>。</para>
+        /// <para>如果提供编码后的 URI，仅接受经过一次编码的 URI。</para>
         /// </summary>
         public string RedirectUri { get; set; }
         /// <summary>
         /// 获取或设置登录使用的 <see cref="T:System.Net.Http.HttpClient"/> 类的 Referer 标头。
         /// </summary>
         public string Referrer { get; set; }
-        /// <summary>
-        /// 指定设置的 RedirectUri 是否已经经过编码。
-        /// </summary>
-        public bool UrlEncoded { get; set; }
 
         /// <summary>
         /// 统一身份认证系统基础 URI。
@@ -96,7 +92,7 @@ namespace XduUIA
             // Build get params
             UriBuilder builder = new UriBuilder(_baseUri);
             var query = HttpUtility.ParseQueryString(builder.Query);
-            query["service"] = UrlEncoded ? RedirectUri : HttpUtility.UrlDecode(RedirectUri);
+            query["service"] = HttpUtility.UrlDecode(RedirectUri);
             builder.Query = query.ToString();
             string strLoginUri = builder.ToString();
             // Load login page
