@@ -21,9 +21,9 @@ A tool that exports your timetable as iCalendar (.ics) format then you can impor
 
 A class library that allows you to login IDS and XduApp (a.k.a iXidian or “i 西电”).
 
-&emsp;
+**3. OneKeyFuckIt - *ONLY EXECUTABLE FILE PROVIDED***
 
-*For details about tool which deals with Eight-One Project (a.k.a. “八个一工程”), please contact me. Because it cannot be published in public for some reasons.*
+A tool that deals with Eight-One Project (a.k.a "八个一工程"). 
 
 ## Note
 Basically, there's no binary executable file provided. You have to compile by yourself.
