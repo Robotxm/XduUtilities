@@ -54,7 +54,7 @@ namespace ExportXDUTimeTable
             };
             // Get json which contains time table
             string strJson = hc.PostAsync("http://ids.xidian.edu.cn/authserver/login?service=https%3A%2F%2Fxidian.cpdaily.com%2Fcomapp-timetable%2Fsys%2FschoolTimetable%2Fv2%2Fapi%2FweekTimetable", new FormUrlEncodedContent(paramList)).Result.Content.ReadAsStringAsync().Result;
-            if (!strJson.Contains("有误") || !strJson.Contains("放假中"))
+            if (!strJson.Contains("有误") && !strJson.Contains("放假中"))
             {
                 JObject jCourse = (JObject)JsonConvert.DeserializeObject(strJson);
 
