@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.lblStuID = new System.Windows.Forms.Label();
             this.lblPwd = new System.Windows.Forms.Label();
             this.lblVerify = new System.Windows.Forms.Label();
@@ -43,6 +42,9 @@
             this.dtpTimeA = new System.Windows.Forms.DateTimePicker();
             this.lblTimeB = new System.Windows.Forms.Label();
             this.dtpTimeB = new System.Windows.Forms.DateTimePicker();
+            this.lblSource = new System.Windows.Forms.Label();
+            this.rbCpdaily = new System.Windows.Forms.RadioButton();
+            this.rbEhall = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.picVerify)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,11 +121,13 @@
             // lblNotice
             // 
             this.lblNotice.AutoSize = true;
-            this.lblNotice.Location = new System.Drawing.Point(12, 224);
+            this.lblNotice.Location = new System.Drawing.Point(12, 283);
             this.lblNotice.Name = "lblNotice";
-            this.lblNotice.Size = new System.Drawing.Size(1033, 240);
+            this.lblNotice.Size = new System.Drawing.Size(1048, 180);
             this.lblNotice.TabIndex = 8;
-            this.lblNotice.Text = resources.GetString("lblNotice.Text");
+            this.lblNotice.Text = "Tips：\r\n1. 输入学号和密码，选择数据源后点击“获取”，如果一切正常，则会在桌面\r\n生成一个 [你的学号]_[学期代码].ics 文件。用你喜欢的日历软件导" +
+    "入即可。\r\n2. 根据学校安排，秋季学期开学后的一段时间改为冬季作息时间，夏季学期\r\n期末的一段时间改为春夏秋作息时间。请自行设定何时更改。\r\n3. 如果出现确" +
+    "实学号和密码正确，但无法获取到课表的情况，请联系作者。";
             // 
             // chkChangeTime
             // 
@@ -171,11 +175,45 @@
             this.dtpTimeB.TabIndex = 13;
             this.dtpTimeB.Value = new System.DateTime(2018, 10, 8, 0, 0, 0, 0);
             // 
-            // Form1
+            // lblSource
+            // 
+            this.lblSource.AutoSize = true;
+            this.lblSource.Location = new System.Drawing.Point(12, 229);
+            this.lblSource.Name = "lblSource";
+            this.lblSource.Size = new System.Drawing.Size(118, 30);
+            this.lblSource.TabIndex = 14;
+            this.lblSource.Text = "数据源:";
+            // 
+            // rbCpdaily
+            // 
+            this.rbCpdaily.AutoSize = true;
+            this.rbCpdaily.Checked = true;
+            this.rbCpdaily.Location = new System.Drawing.Point(136, 227);
+            this.rbCpdaily.Name = "rbCpdaily";
+            this.rbCpdaily.Size = new System.Drawing.Size(170, 34);
+            this.rbCpdaily.TabIndex = 15;
+            this.rbCpdaily.TabStop = true;
+            this.rbCpdaily.Text = "今日校园";
+            this.rbCpdaily.UseVisualStyleBackColor = true;
+            // 
+            // rbEhall
+            // 
+            this.rbEhall.AutoSize = true;
+            this.rbEhall.Location = new System.Drawing.Point(312, 225);
+            this.rbEhall.Name = "rbEhall";
+            this.rbEhall.Size = new System.Drawing.Size(260, 34);
+            this.rbEhall.TabIndex = 16;
+            this.rbEhall.Text = "一站式服务大厅";
+            this.rbEhall.UseVisualStyleBackColor = true;
+            // 
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1085, 532);
+            this.ClientSize = new System.Drawing.Size(1085, 486);
+            this.Controls.Add(this.rbEhall);
+            this.Controls.Add(this.rbCpdaily);
+            this.Controls.Add(this.lblSource);
             this.Controls.Add(this.dtpTimeB);
             this.Controls.Add(this.lblTimeB);
             this.Controls.Add(this.dtpTimeA);
@@ -190,10 +228,9 @@
             this.Controls.Add(this.lblVerify);
             this.Controls.Add(this.lblPwd);
             this.Controls.Add(this.lblStuID);
-            this.Name = "Form1";
+            this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "导出课程表 - 西安电子科技大学";
-            this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picVerify)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -216,6 +253,9 @@
         private System.Windows.Forms.DateTimePicker dtpTimeA;
         private System.Windows.Forms.Label lblTimeB;
         private System.Windows.Forms.DateTimePicker dtpTimeB;
+        private System.Windows.Forms.Label lblSource;
+        private System.Windows.Forms.RadioButton rbCpdaily;
+        private System.Windows.Forms.RadioButton rbEhall;
     }
 }
 

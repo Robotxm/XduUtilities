@@ -117,14 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblNotice.Text" xml:space="preserve">
-    <value>如何使用：
-输入学号和密码后点击“获取”，如果一切正常，则会在桌面生成一个
-xdu_timetable_[你的学号]_[生成时间].ics 文件。用你喜欢的日历软件导入
-即可。
-根据学校安排，秋季学期开学后的一段时间改为冬季作息时间，夏季学期期末
-的一段时间改为春夏秋作息时间。为避免出现学校更改规定导致程序生成错误
-的时间，请自行设定。
-如果出现确实学号和密码正确，但无法获取到课表的情况，请联系作者。</value>
-  </data>
 </root>
