@@ -65,7 +65,6 @@ namespace ExportXDUTimeTable
                     hc.DefaultRequestHeaders.Add("Accept", "application/json, text/javascript, */*; q=0.01");
                     json = hc.PostAsync("http://ehall.xidian.edu.cn/jwapp/sys/wdkb/modules/jshkcb/dqxnxq.do", null)
                         .Result.Content.ReadAsStringAsync().Result;
-                    MessageBox.Show(json);
                     term = ((JObject)JsonConvert.DeserializeObject(json))["datas"]["dqxnxq"]["rows"][0]["DM"].ToString();
                     json = hc.PostAsync("http://ehall.xidian.edu.cn/jwapp/sys/wdkb/modules/jshkcb/cxjcs.do", new StringContent($"XN={term.Split('-')[0]}-{term.Split('-')[1]}&XQ={term.Split('-')[2]}", Encoding.UTF8, "application/x-www-form-urlencoded")).Result.Content.ReadAsStringAsync().Result;
                     JToken termInfo = ((JObject)JsonConvert.DeserializeObject(json))["datas"]["cxjcs"]["rows"][0];
@@ -107,6 +106,8 @@ namespace ExportXDUTimeTable
 
         public void AddToCalendar(string date, string courseName, string classroom, int sectionStart, int sectionEnd)
         {
+            if (sectionStart > 10 || sectionEnd > 10)
+                return;
             if (chkChangeTime.Checked)
             {
                 if (DateTime.Compare(DateTime.Parse(date), dtpTimeB.Value) > 0 &&
