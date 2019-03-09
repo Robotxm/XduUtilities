@@ -85,7 +85,7 @@ namespace ExportXDUTimeTable
                 AddToCalendar(
                     course["date"].ToString(),
                     course["name"].ToString(),
-                    course["classroom"].ToString(),
+                    course["classroom"] == null ? "待定" : course["classroom"].ToString(),
                     int.Parse(course["sectionStart"].ToString()),
                     int.Parse(course["sectionEnd"].ToString())
                 );
