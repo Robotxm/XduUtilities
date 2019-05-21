@@ -115,9 +115,18 @@ namespace XduUIA
                 new KeyValuePair<string, string>("_eventId", strEventId),
                 new KeyValuePair<string, string>("rmShown", strRmShown)
             };
+            // Add verification code if it is provided
+            if (verificationCode != "")
+                paramList.Add(new KeyValuePair<string, string>("captchaResponse", verificationCode));
+
             string strReturn = hc.PostAsync(strLoginUri, new FormUrlEncodedContent(paramList)).Result.Content.ReadAsStringAsync().Result;
+            
             try
             {
+                // Id or password is invalid
+                if (strReturn.Contains("有误"))
+                    throw new Exception("学号或密码不正确。");
+
                 // Login successfully
                 verificationImage = null;
                 // Verification required
@@ -127,9 +136,6 @@ namespace XduUIA
                         Image.FromStream(hc.GetStreamAsync("http://ids.xidian.edu.cn/authserver/captcha.html").Result);
                     return hc;
                 }
-                // Id or password is invalid
-                if (strReturn.Contains("有误"))
-                    throw new Exception("学号或密码不正确。");
 
                 return hc;
             }
@@ -153,7 +159,7 @@ namespace XduUIA
         /// <summary>
         /// 获取表示当前时间的 Unix 时间戳。
         /// </summary>
-        /// <returns>表示 Unix 时间戳的字符串。</returns>
+        /// <returns>表示 Unix 时间戳的长整型。</returns>
         public long GetTimestamp()
         {
             return DateTimeOffset.Now.ToUnixTimeMilliseconds();
