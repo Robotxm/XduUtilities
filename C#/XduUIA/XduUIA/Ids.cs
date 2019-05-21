@@ -142,7 +142,7 @@ namespace XduUIA
             catch (Exception e)
             {
                 // Other exception
-                throw new Exception($"登录失败。\n{e.Message}");
+                throw new Exception($"登录失败。{e.Message}");
             }
         }
 
