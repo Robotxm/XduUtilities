@@ -1,7 +1,4 @@
 # XduUtilities
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-
-
 
 ## What's this repository
 This is a collection of utilities for XDU students.
@@ -23,7 +20,13 @@ A class library that allows you to login IDS and XduApp (a.k.a iXidian or “i �
 
 **3. OneKeyFuckIt - *ONLY EXECUTABLE FILE PROVIDED***
 
-A tool that deals with Eight-One Project (a.k.a "八个一工程"). 
+A tool that deals with Eight-One Project (a.k.a "八个一工程").
+
+*Eight-One Project has been deprecated, but this application is still available.*
+
+**4. AutoPE - *ONLY EXECUTABLE FILE PROVIDED***
+
+A tool that deals with PE course evaluation and theory exam.
 
 ## Note
 Basically, there's no binary executable file provided. You have to compile by yourself.
