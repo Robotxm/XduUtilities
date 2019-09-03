@@ -118,7 +118,8 @@ namespace ExportXDUTimeTable
                         Start = new CalDateTime(DateTime.Parse(date + " " + sectionWinterStartTime[sectionStart])),
                         End = new CalDateTime(DateTime.Parse(date + " " + sectionWinterEndTime[sectionEnd])),
                         Description = courseName + " @ " + classroom,
-                        Summary = courseName + " @ " + classroom
+                        Summary = courseName + " @ " + classroom,
+                        Location = classroom
                     };
                     timeTable.Events.Add(e);
                 }
@@ -129,7 +130,8 @@ namespace ExportXDUTimeTable
                         Start = new CalDateTime(DateTime.Parse(date + " " + sectionSummerStartTime[sectionStart])),
                         End = new CalDateTime(DateTime.Parse(date + " " + sectionSummerEndTime[sectionEnd])),
                         Description = courseName + " @ " + classroom,
-                        Summary = courseName + " @ " + classroom
+                        Summary = courseName + " @ " + classroom,
+                        Location = classroom
                     };
                     timeTable.Events.Add(e);
                 }
@@ -141,7 +143,8 @@ namespace ExportXDUTimeTable
                     Start = new CalDateTime(DateTime.Parse(date + " " + sectionSummerStartTime[sectionStart])),
                     End = new CalDateTime(DateTime.Parse(date + " " + sectionSummerEndTime[sectionEnd])),
                     Description = courseName + " @ " + classroom,
-                    Summary = courseName + " @ " + classroom
+                    Summary = courseName + " @ " + classroom,
+                    Location = classroom
                 };
                 timeTable.Events.Add(e);
             }
