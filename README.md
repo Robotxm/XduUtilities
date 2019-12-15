@@ -28,9 +28,11 @@ A tool that deals with Eight-One Project (a.k.a "八个一工程").
 
 *Eight-One Project has been deprecated, but this application is still available.*
 
-**4. AutoPE - *ONLY EXECUTABLE FILE PROVIDED***
+**4. AutoPE - *HAS BEEN DEPRECATED***
 
 A tool that deals with PE course evaluation and theory exam.
+
+**Due to the upgrade of system, this tool is useless now.**
 
 ## Note
 Basically, there's no binary executable file provided. You have to compile by yourself.
